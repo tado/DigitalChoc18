@@ -18,10 +18,12 @@ void ofApp::setup(){
 	myFbo.allocate(1920, 1080);
 	myGlitch.setup(&myFbo);
 	num = int(ofRandom(shaders.size()));
+	osc = new OscReceiver();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	osc->update();
 	/*
 	int fxnum[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
 	if (ofGetFrameNum() % int(ofRandom(2, 20)) == 0) {

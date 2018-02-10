@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxPostGlitch.h"
+#include "OscReceiver.h"
 
 class ofApp : public ofBaseApp {
 
@@ -24,7 +25,9 @@ public:
 
 	vector<ofShader> shaders;
 	int num;
+	int fxNum;
 	bool showLog;
 	ofFbo myFbo;
 	ofxPostGlitch myGlitch;
+	OscReceiver *osc;
 };
