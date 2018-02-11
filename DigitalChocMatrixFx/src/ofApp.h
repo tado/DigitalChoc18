@@ -23,9 +23,10 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-	static const int NUM = 4;
-	RandomShader randomShader[NUM * NUM];
+	static const int MAX = 6;
+	RandomShader randomShader[MAX * MAX];
 	ofFbo myFbo;
 	ofxPostGlitch myGlitch;
 	int div;
+	bool showLog;
 };

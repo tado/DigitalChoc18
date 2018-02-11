@@ -13,7 +13,7 @@ void OscReceiver::update() {
 		ofxOscMessage m;
 		receiver.getNextMessage(m);
 		if (m.getAddress() == "/renick/shader") {
-			app->num = ofRandom(app->shaders.size());
+			app->num = ofRandom(1, app->shaders.size());
 			ofxOscMessage m;
 			m.setAddress("/tado/shader");
 			m.addIntArg(app->num);

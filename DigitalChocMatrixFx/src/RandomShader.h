@@ -10,6 +10,7 @@ public:
 
 	vector<ofShader> shaders;
 	ofFbo fbo;
+
 	int num;
 	int div;
 };

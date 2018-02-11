@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	ofBackground(0);
-	ofSetFrameRate(120);
+	ofSetFrameRate(60);
     ofDirectory dir("100fragments");
 	for (int i = 0; i < dir.getFiles().size(); i++){
 		ostringstream digit;
@@ -22,14 +22,13 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	/*
 	int fxnum[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
 	if (ofGetFrameNum() % int(ofRandom(2, 20)) == 0) {
 		num = int(ofRandom(shaders.size()));
 	}
     if (ofGetFrameNum() % int(ofRandom(2, 20)) == 0) {
 		for (int i = 0; i < 8; i++) {
-			int rand = int(ofRandom(4));
+			int rand = int(ofRandom(12));
 			bool fx;
 			if (rand == 0) {
 				fx = true;
@@ -39,7 +38,6 @@ void ofApp::update(){
 			myGlitch.setFx(ofxPostGlitchType(fxnum[i]), fx);
 		}
 	}
-	*/
 }
 
 //--------------------------------------------------------------
@@ -72,12 +70,12 @@ void ofApp::keyPressed(int key){
 		}
 	}
 	if (key == ' '){
-		num = int(ofRandom(shaders.size()));
+		num = int(ofRandom(1, shaders.size()));
 	}
 	if (key == 'z'){
 		int fxnum[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
 		for (int i = 0; i < 8; i++) {
-			int rand = int(ofRandom(4));
+			int rand = int(ofRandom(12));
 			bool fx;
 			if (rand == 0) {
 				fx = true;
@@ -93,6 +91,9 @@ void ofApp::keyPressed(int key){
 		for (int i = 0; i < 8; i++) {
 			myGlitch.setFx(ofxPostGlitchType(fxnum[i]), false);
 		}
+	}
+	if (key == 'l') {
+		showLog ? showLog = false : showLog = true;
 	}
 }
 
