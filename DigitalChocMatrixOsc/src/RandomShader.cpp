@@ -11,8 +11,8 @@ RandomShader::RandomShader(){
 		sh.load("", "100fragments/" + digit.str() + ".frag");
 		shaders.push_back(sh);
 	}
-	num = 0;
 	div = 1;
+	randomize();
 }
 
 void RandomShader::update() {

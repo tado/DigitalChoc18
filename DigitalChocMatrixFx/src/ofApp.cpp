@@ -6,7 +6,7 @@ void ofApp::setup(){
 	ofHideCursor();
 	myFbo.allocate(1920, 1080);
 	myGlitch.setup(&myFbo);
-	div = MAX;
+	div = 1;
 	ofToggleFullscreen();
 	showLog = true;
 }

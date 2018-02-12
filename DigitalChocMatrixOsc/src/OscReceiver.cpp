@@ -45,8 +45,14 @@ void OscReceiver::update() {
 			}
 			ofxOscMessage m;
 			m.setAddress("/tado/effect");
-			//m.setAddress("/tado/matrix");
 			m.addIntArg(numEffects);
+			sender.sendMessage(m, false);
+		}
+		if (m.getAddress() == "/renick/matrix") {
+			app->div = int(ofRandom(1, app->MAX + 1));
+			ofxOscMessage m;
+			m.setAddress("/tado/matrix");
+			m.addIntArg(app->div);
 			sender.sendMessage(m, false);
 		}
 	}

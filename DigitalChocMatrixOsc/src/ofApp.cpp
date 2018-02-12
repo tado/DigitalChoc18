@@ -9,7 +9,9 @@ void ofApp::setup(){
 	myGlitch.setup(&myFbo);
 	div = 1;
 	ofToggleFullscreen();
-	showLog = true;
+	showLog = false;
+
+	randomShader[0].num = 0;
 }
 
 void ofApp::update(){
