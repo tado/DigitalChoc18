@@ -2,22 +2,28 @@
 
 void ofApp::setup(){
 	ofBackground(0);
+	ofSetFrameRate(60);
 	ofHideCursor();
+	osc = new OscReceiver();
 	myFbo.allocate(1920, 1080);
 	myGlitch.setup(&myFbo);
 	div = 1;
 	ofToggleFullscreen();
+	showLog = true;
 }
 
 void ofApp::update(){
+	osc->update();
+
 	for (int i = 0; i < div * div; i++) {
+		randomShader[i].div = div;
 		randomShader[i].update();
 	}
 	/*
-	int fxnum[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
-	if (ofGetFrameNum() % int(ofRandom(2, 12)) == 0) {
+	int fxNum[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
+	if (ofGetFrameNum() % int(ofRandom(2, 6)) == 0) {
 		for (int i = 0; i < 8; i++) {
-			int rand = int(ofRandom(4));
+			int rand = int(ofRandom(12));
 			bool fx;
 			if (rand == 0) {
 				fx = true;
@@ -25,9 +31,9 @@ void ofApp::update(){
 			else {
 				fx = false;
 			}
-			myGlitch.setFx(ofxPostGlitchType(fxnum[i]), fx);
+			myGlitch.setFx(ofxPostGlitchType(fxNum[i]), fx);
 		}
-		div = int(ofRandom(1, NUM + 1));
+		div = int(ofRandom(1, MAX + 1));
 		for (int i = 0; i < div * div; i++) {
 			randomShader[i].div = div;
 		}
@@ -36,6 +42,9 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
+	for (int i = 0; i < div * div; i++) {
+		randomShader[i].draw();
+	}
 	myFbo.begin();
 	for (int j = 0; j < div; j++) {
 		for (int i = 0; i < div; i++) {
@@ -45,6 +54,10 @@ void ofApp::draw(){
 	myFbo.end();
 	myGlitch.generateFx();
 	myFbo.draw(0, 0, ofGetWidth(), ofGetHeight());
+
+	if (showLog) {
+		ofDrawBitmapStringHighlight(ofToString(ofGetFrameRate()), 20, 20);
+	}
 }
 
 void ofApp::keyPressed(int key){
@@ -53,11 +66,11 @@ void ofApp::keyPressed(int key){
 	}
 	if (key == ' ') {
 		for (int i = 0; i < div * div; i++) {
-			randomShader[i].num = int(ofRandom(randomShader[i].shaders.size()));
+			randomShader[i].randomize();
 		}
 	}
 	if (key == 'z') {
-		int fxnum[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
+		int fxMAX[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
 		for (int i = 0; i < 8; i++) {
 			int rand = int(ofRandom(4));
 			bool fx;
@@ -67,17 +80,29 @@ void ofApp::keyPressed(int key){
 			else {
 				fx = false;
 			}
-			myGlitch.setFx(ofxPostGlitchType(fxnum[i]), fx);
+			myGlitch.setFx(ofxPostGlitchType(fxMAX[i]), fx);
 		}
 	}
 	if (key == 'x') {
-		int fxnum[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
+		int fxMAX[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
 		for (int i = 0; i < 8; i++) {
-			myGlitch.setFx(ofxPostGlitchType(fxnum[i]), false);
+			myGlitch.setFx(ofxPostGlitchType(fxMAX[i]), false);
 		}
 	}
 	if (key == 'c') {
-		div = int(ofRandom(1, NUM + 1));
+		div = int(ofRandom(1, MAX + 1));
+	}
+	if (key == 'v') {
+		div = 1;
+	}
+	if (key == 'a') {
+		for (int i = 0; i < div * div; i++) {
+			randomShader[i].num = 0;
+		}
+		div = 1;
+	}
+	if (key == 'l') {
+		showLog ? showLog = false : showLog = true;
 	}
 }
 

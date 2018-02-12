@@ -5,11 +5,13 @@ class RandomShader {
 public:
 	RandomShader();
 	void update();
-	void draw(int left, int top, int width, int height);
+	void draw();
+	void randomize();
 	~RandomShader();
 
 	vector<ofShader> shaders;
 	ofFbo fbo;
+
 	int num;
 	int div;
 };

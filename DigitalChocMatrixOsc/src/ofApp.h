@@ -1,8 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-#include "RandomShader.h"
 #include "ofxPostGlitch.h"
+#include "ofxOsc.h"
+#include "RandomShader.h"
+#include "OscReceiver.h"
 
 class ofApp : public ofBaseApp {
 
@@ -23,9 +25,11 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-	static const int NUM = 4;
-	RandomShader randomShader[NUM * NUM];
+	static const int MAX = 4;
+	RandomShader randomShader[MAX * MAX];
 	ofFbo myFbo;
 	ofxPostGlitch myGlitch;
 	int div;
+	bool showLog;
+	OscReceiver *osc;
 };
