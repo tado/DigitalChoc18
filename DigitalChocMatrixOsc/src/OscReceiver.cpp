@@ -55,5 +55,16 @@ void OscReceiver::update() {
 			m.addIntArg(app->div);
 			sender.sendMessage(m, false);
 		}
+		if (m.getAddress() == "/renick/reset") {
+			app->div = 1;
+			for (int i = 0; i < app->MAX * app->MAX; i++) {
+				app->randomShader[i].randomize();
+			}
+			int fxMAX[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
+			for (int i = 0; i < 8; i++) {
+				app->myGlitch.setFx(ofxPostGlitchType(fxMAX[i]), false);
+			}
+			app->randomShader[0].num = 0;
+		}
 	}
 }
