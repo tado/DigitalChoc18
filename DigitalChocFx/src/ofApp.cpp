@@ -28,7 +28,7 @@ void ofApp::update(){
 	}
     if (ofGetFrameNum() % int(ofRandom(2, 20)) == 0) {
 		for (int i = 0; i < 8; i++) {
-			int rand = int(ofRandom(12));
+			int rand = int(ofRandom(4));
 			bool fx;
 			if (rand == 0) {
 				fx = true;
