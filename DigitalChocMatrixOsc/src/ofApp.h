@@ -32,4 +32,5 @@ public:
 	int div;
 	bool showLog;
 	OscReceiver *osc;
+	int fxFreq;
 };

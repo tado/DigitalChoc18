@@ -12,6 +12,7 @@ void ofApp::setup(){
 	showLog = false;
 
 	randomShader[0].num = 0;
+	fxFreq = 6;
 }
 
 void ofApp::update(){
@@ -74,7 +75,7 @@ void ofApp::keyPressed(int key){
 	if (key == 'z') {
 		int fxMAX[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
 		for (int i = 0; i < 8; i++) {
-			int rand = int(ofRandom(4));
+			int rand = int(ofRandom(fxFreq));
 			bool fx;
 			if (rand == 0) {
 				fx = true;
@@ -105,6 +106,16 @@ void ofApp::keyPressed(int key){
 	}
 	if (key == 'l') {
 		showLog ? showLog = false : showLog = true;
+	}
+	if (key == '2') {
+		if (key < 18) {
+			fxFreq++;
+		}
+	}
+	if (key == '1'){
+		if (key > 2) {
+			fxFreq--;
+		}
 	}
 }
 

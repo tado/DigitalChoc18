@@ -32,7 +32,7 @@ void OscReceiver::update() {
 			int numEffects = 0;
 			int fxnum[] = { 0, 2, 3, 4, 6, 7, 8, 9 };
 			for (int i = 0; i < 8; i++) {
-				int rand = int(ofRandom(4));
+				int rand = int(ofRandom(app->fxFreq));
 				bool fx;
 				if (rand == 0) {
 					fx = true;

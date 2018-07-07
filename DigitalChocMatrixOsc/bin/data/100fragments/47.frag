@@ -1,3 +1,5 @@
+#version 120
+
 uniform float time;
 uniform vec2 resolution;
 
@@ -22,7 +24,7 @@ float noise (in vec2 st) {
             (d - b) * u.x * u.y;
 }
 
-#define OCTAVES 12
+#define OCTAVES 4
 float fbm (in vec2 st) {
     float value = 0.0;
     float amplitude = .5;
